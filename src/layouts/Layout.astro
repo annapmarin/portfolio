@@ -1,3 +1,7 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,7 +9,11 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+
+		<title>Anna Prats, developer</title>
 	</head>
 	<body>
 		<slot />
@@ -13,10 +21,9 @@
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	html, body {
+    font-family: 'Neue Montreal', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
 	}
 </style>
