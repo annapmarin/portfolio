@@ -11,14 +11,19 @@ import Navbar from "../components/Navbar.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
-
 		<title>Anna Prats, developer</title>
+
 	</head>
 	<body>
-		<Navbar />
-		<slot />
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <Navbar />
+        <slot />
+      </div>
+    </div>
+
+    <script type="module" src="/src/scripts/scroll-smooth.js"></script>
+
 	</body>
 </html>
 
