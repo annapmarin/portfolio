@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
 ---
 
 <!doctype html>
@@ -16,6 +17,7 @@ import "../styles/global.css";
 		<title>Anna Prats, developer</title>
 	</head>
 	<body>
+		<Navbar />
 		<slot />
 	</body>
 </html>
@@ -25,5 +27,8 @@ import "../styles/global.css";
     font-family: 'Neue Montreal', sans-serif;
     font-weight: normal;
     font-size: 20px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 	}
 </style>

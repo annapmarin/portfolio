@@ -1,0 +1,50 @@
+---
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Blog', href: '/blog' }
+];
+---
+
+<nav class="navbar">
+  <ul class="navbar__list">
+    {navItems.map(item => (
+      <li class="navbar__item">
+        <a href={item.href} class="navbar__link">{item.name}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .navbar {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 100vw;
+  }
+
+  .navbar__list {
+    width: 40%;
+    margin-left: auto;
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 0;
+  }
+
+  @media (max-width: 768px) {
+    .navbar__list {
+      width: unset;
+      margin: 20px auto;
+    }
+  }
+
+  .navbar__link {
+    text-decoration: none;
+    color: #fff;
+    font-size: .8rem;
+  }
+</style>
