@@ -42,13 +42,23 @@ const { title } = Astro.props;
   }
 
   @media (max-width: 768px) {
+    .card {
+      padding: 2rem 2.2rem;
+    }
     .card__body {
       padding-left: 0;
     }
   }
 
   :global(.card__body p.big) {
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     line-height: 1;
   }
+
+  @media (max-width: 600px) {
+  :global(.card__body p.big) {
+    font-size: 1.3rem;
+    text-wrap: balance;
+  }
+}
 </style>
