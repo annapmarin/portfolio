@@ -1,0 +1,54 @@
+---
+const { title } = Astro.props;
+---
+
+<section class="card">
+  <div class="card__header">
+    <span class="card__dot"></span>
+    <h2 class="card__title">{ title }</h2>
+  </div>
+  <div class="card__body">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .card {
+    padding: 2rem 4rem;
+  }
+
+  .card__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .3rem;
+    border-bottom: 7px solid black;
+  }
+
+  .card__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px 0 4px 0;
+    background-color: black;
+  }
+
+  .card__title {
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .card__body {
+    padding-left: 20rem;
+  }
+
+  @media (max-width: 768px) {
+    .card__body {
+      padding-left: 0;
+    }
+  }
+
+  :global(.card__body p.big) {
+    font-size: 1.9rem;
+    line-height: 1;
+  }
+</style>
