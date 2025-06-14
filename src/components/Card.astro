@@ -1,8 +1,8 @@
 ---
-const { title } = Astro.props;
+const { title, invert = false } = Astro.props;
 ---
 
-<section class="card">
+<section class={`card${invert ? " card--invert" : ""}`}>
   <div class="card__header">
     <span class="card__dot"></span>
     <h2 class="card__title">{ title }</h2>
@@ -15,6 +15,9 @@ const { title } = Astro.props;
 <style>
   .card {
     padding: 2rem 4rem;
+    background: #fff;
+    color: #222;
+    transition: background 0.2s, color 0.2s;
   }
 
   .card__header {
@@ -22,14 +25,15 @@ const { title } = Astro.props;
     flex-direction: row;
     align-items: center;
     gap: .3rem;
-    border-bottom: 7px solid black;
+    border-bottom: 7px solid #111111;
   }
 
   .card__dot {
     width: 8px;
     height: 8px;
     border-radius: 4px 0 4px 0;
-    background-color: black;
+    background-color: #111111;
+    transition: background 0.2s;
   }
 
   .card__title {
@@ -39,6 +43,18 @@ const { title } = Astro.props;
 
   .card__body {
     padding-left: 20rem;
+  }
+
+  /* INVERTED STYLES */
+  .card--invert {
+    background: #111111;
+    color: #fff;
+  }
+  .card--invert .card__header {
+    border-bottom-color: #fff;
+  }
+  .card--invert .card__dot {
+    background-color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -56,9 +72,9 @@ const { title } = Astro.props;
   }
 
   @media (max-width: 600px) {
-  :global(.card__body p.big) {
-    font-size: 1.3rem;
-    text-wrap: balance;
+    :global(.card__body p.big) {
+      font-size: 1.3rem;
+      text-wrap: balance;
+    }
   }
-}
 </style>
