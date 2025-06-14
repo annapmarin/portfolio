@@ -13,6 +13,7 @@ import Navbar from "../components/Navbar.astro";
 		<meta name="generator" content={Astro.generator} />
 
 		<title>Anna Prats, developer</title>
+
     
     <!-- Dev icons library -->
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
@@ -25,10 +26,11 @@ import Navbar from "../components/Navbar.astro";
         <slot />
       </div>
     </div>
-
-    <script type="module" src="/scripts/scroll-smooth.js"></script>
-
-	</body>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" defer></script>
+    <script src="/scripts/gsap-animation.js" defer></script>
+  </body>
 </html>
 
 <style>

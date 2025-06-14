@@ -1,0 +1,128 @@
+function animateJourney() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  function run() {
+    const path = document.getElementById("flower-line");
+    if (path) {
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = length;
+      path.style.strokeDashoffset = length;
+
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        scrollTrigger: {
+          trigger: ".timeline",
+          start: "top-=250 top",
+          end: "bottom bottom",
+          scrub: 1
+        },
+      });
+    }
+
+    function animateText(selector, isMobile) {
+      gsap.utils.toArray(selector).forEach((item) => {
+        if (isMobile) {
+          gsap.fromTo(
+            item,
+            { opacity: 0, x: 50 },
+            {
+              opacity: 1,
+              x: 0,
+              scrollTrigger: {
+                trigger: item,
+                start: "top 70%",
+                end: "top 40%",
+                scrub: true
+              },
+            }
+          );
+        } else {
+          gsap.fromTo(
+            item,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                end: "top 60%",
+                scrub: true
+              },
+            }
+          );
+        }
+      });
+    }
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    // Timeline texts
+    animateText(".timeline__content", isMobile);
+
+    // Card texts
+    animateText(".card__body p", isMobile);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+}
+
+function animateTechIcons() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+
+  function run() {
+    const icons = document.querySelectorAll('.tech-icon i');
+    const labels = document.querySelectorAll('.tech-icon label');
+    icons.forEach((icon, idx) => {
+      icon.addEventListener('mouseenter', () => {
+        icon.classList.add('colored');
+        gsap.to(labels[idx], {
+          opacity: 1,
+          y: -5,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+      icon.addEventListener('mouseleave', () => {
+        icon.classList.remove('colored');
+        gsap.to(labels[idx], {
+          opacity: 0,
+          y: 0,
+          duration: 0.3,
+          ease: "power2.in"
+        });
+      });
+    });
+  }
+}
+
+function animateScrollSmooth() {
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+  function run() {
+    ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.1,
+      effects: true,
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+}
+
+animateScrollSmooth();
+animateJourney();
+animateTechIcons();
