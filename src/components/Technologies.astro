@@ -1,7 +1,8 @@
 ---
+import { animateTechIcons } from '../scripts/icons-animation.js';
 const techIcons = [
-  { class: 'devicon-html5-plain', label: 'HTML5' },
-  { class: 'devicon-css3-plain', label: 'CSS3' },
+  { class: 'devicon-html5-plain', label: 'HTML' },
+  { class: 'devicon-css3-plain', label: 'CSS' },
   { class: 'devicon-javascript-plain', label: 'JavaScript' },
   { class: 'devicon-java-plain', label: 'Java' },
   { class: 'devicon-git-plain', label: 'Git' },
@@ -12,43 +13,29 @@ const techIcons = [
   { class: 'devicon-django-plain', label: 'Django' },
   { class: 'devicon-python-plain', label: 'Python' },
   { class: 'devicon-wordpress-plain', label: 'WordPress' },
-  { class: 'devicon-bootstrap-plain', label: 'Bootstrap' },
+  { class: 'devicon-tailwindcss-plain', label: 'Tailwind' },
   { class: 'devicon-xml-plain', label: 'XML' },
   { class: 'devicon-sass-original', label: 'Sass' },
   { class: 'devicon-figma-plain', label: 'Figma' },
 ];
 ---
 
-<div class="technologies-grid">
+<div class="technologies-grid" id="tech-grid">
   {techIcons.map(icon => (
     <div class="tech-icon" title={icon.label}>
       <i class={icon.class}></i>
+      <label>{icon.label}</label>
     </div>
   ))}
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const icons = document.querySelectorAll('.tech-icon i');
-    icons.forEach(icon => {
-      icon.addEventListener('mouseenter', () => {
-        icon.classList.add('colored');
-      });
-      icon.addEventListener('mouseleave', () => {
-        icon.classList.remove('colored');
-      });
-    });
-  });
-</script>
+<script type="module" src="/src/scripts/icons-animation.js"></script>
 
 <style>
 .technologies-grid {
   padding-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
 .tech-icon {
@@ -57,21 +44,27 @@ const techIcons = [
   align-items: center;
 }
 .tech-icon i {
-  font-size: 48px;
+  font-size: 70px;
 }
 
 .tech-icon i.colored {
   transition: all 0.2s ease-in-out;
 }
 
-.tech-icon span {
-  margin-top: 0.5rem;
-  font-size: 1rem;
+.tech-icon label {
+  font-size: 0.6rem;
+  text-transform: lowercase;
+  padding-top: 10px;
+  opacity: 0;
+  transform: translateY(0);
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .technologies-grid {
+    display: flex;
     gap: 3rem;
+    flex-wrap: wrap;
   }
 
   .tech-icon i {
