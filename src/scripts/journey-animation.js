@@ -49,8 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
               trigger: item,
               start: "top 80%",
               end: "top 60%",
-              scrub: true,
-              markers: true
+              scrub: true
             },
           }
         );
