@@ -16,5 +16,6 @@
 }
 
 body {
-  cursor: crosshair
+  cursor: crosshair;
+  overflow-x: hidden;
 }
