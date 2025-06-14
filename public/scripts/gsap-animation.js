@@ -123,6 +123,8 @@ function animateScrollSmooth() {
   }
 }
 
-animateScrollSmooth();
+if (window.innerWidth > 768) {
+  animateScrollSmooth();
+};
 animateJourney();
 animateTechIcons();
