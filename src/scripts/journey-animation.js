@@ -47,9 +47,10 @@ window.addEventListener("DOMContentLoaded", () => {
             y: 0,
             scrollTrigger: {
               trigger: item,
-              start: "top 60%",
-              end: "top 50%",
-              scrub: true
+              start: "top 80%",
+              end: "top 60%",
+              scrub: true,
+              markers: true
             },
           }
         );
