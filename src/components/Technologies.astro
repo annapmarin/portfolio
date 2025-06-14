@@ -1,0 +1,81 @@
+---
+const techIcons = [
+  { class: 'devicon-html5-plain', label: 'HTML5' },
+  { class: 'devicon-css3-plain', label: 'CSS3' },
+  { class: 'devicon-javascript-plain', label: 'JavaScript' },
+  { class: 'devicon-java-plain', label: 'Java' },
+  { class: 'devicon-git-plain', label: 'Git' },
+  { class: 'devicon-github-original', label: 'GitHub' },
+  { class: 'devicon-react-original', label: 'React' },
+  { class: 'devicon-astro-plain', label: 'Astro' },
+  { class: 'devicon-mysql-plain', label: 'MySQL' },
+  { class: 'devicon-django-plain', label: 'Django' },
+  { class: 'devicon-python-plain', label: 'Python' },
+  { class: 'devicon-wordpress-plain', label: 'WordPress' },
+  { class: 'devicon-bootstrap-plain', label: 'Bootstrap' },
+  { class: 'devicon-xml-plain', label: 'XML' },
+  { class: 'devicon-sass-original', label: 'Sass' },
+  { class: 'devicon-figma-plain', label: 'Figma' },
+];
+---
+
+<div class="technologies-grid">
+  {techIcons.map(icon => (
+    <div class="tech-icon" title={icon.label}>
+      <i class={icon.class}></i>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const icons = document.querySelectorAll('.tech-icon i');
+    icons.forEach(icon => {
+      icon.addEventListener('mouseenter', () => {
+        icon.classList.add('colored');
+      });
+      icon.addEventListener('mouseleave', () => {
+        icon.classList.remove('colored');
+      });
+    });
+  });
+</script>
+
+<style>
+.technologies-grid {
+  padding-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.tech-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tech-icon i {
+  font-size: 48px;
+}
+
+.tech-icon i.colored {
+  transition: all 0.2s ease-in-out;
+}
+
+.tech-icon span {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .technologies-grid {
+    gap: 3rem;
+  }
+
+  .tech-icon i {
+    font-size: 4rem;
+  }
+}
+</style>
