@@ -2,17 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Card from '../components/Card.astro';
+import Timeline from '../components/Timeline.astro';
+
+const steps = [
+  { title: "1. The Seed", description: "It all starts here. We plant the seed — an idea, a vision. From this moment on, we’ll nurture it together to make it grow." },
+  { title: "2. The Soil", description: "We choose the most fertile ground. Evaluating the right tools, technologies, and resources to ensure your project takes root with strength and purpose." },
+  { title: "3. The Growth", description: "We map out the plan and begin building. From design to development, each stage is carefully cultivated to guide your project’s growth." },
+  { title: "4. The Bloom", description: "Together, we review the result, refine it, and keep it thriving. Like a plant in full bloom, your project will continue to grow with care and ongoing support." },
+];
 ---
 
 <Layout>
-	<Hero
-		videoSrc="/videos/hero-video-1.mp4"
+    <Hero
+        videoSrc="/videos/hero-video-1.mp4"
     title="Where reality meets code"
     subtitle="Crafting <strong>your dreams</strong> with passion"
   />
   <Card title="The developer">
     <p class="big">I'm Anna — a web developer turning ideas into elegant, functional experiences.</p>
     <p class="big">My goal is to craft each project with care, creativity, and cutting-edge tech.</p>
-    </p>
   </Card>
+  <Card title="Our journey together" />
+  <Timeline steps={steps} />
+  <script type="module" src="/src/scripts/journey-animation.js"></script>
 </Layout>

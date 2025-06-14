@@ -1,3 +1,79 @@
 ---
+interface Step {
+  title: string;
+  description: string;
+}
 
+const { steps = [] }: { steps?: Step[] } = Astro.props;
 ---
+
+<section class="timeline">
+  <div class="timeline__line">
+    <svg
+      width="280"
+      height="431"
+      viewBox="0 0 280 431"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path id="flower-line"
+        d="M20.5001 1.5C20.5001 1.5 153.336 20.0298 152.5 80C151.65 140.954 25.0161 92.044 14.0001 152C0.941053 223.076 174.61 175.265 172.5 247.5C170.343 321.361 1.61461 254.607 1.50011 328.5C1.39771 394.581 72.6661 438.407 138 428.5C173.692 423.088 217 380.5 217 380.5C217 380.5 185.766 357.857 192.5 341C199.127 324.412 222.76 317.086 236.5 328.5C251.984 341.363 220.5 377.5 220.5 377.5C220.5 377.5 243.575 336.593 262 345.5C267.538 348.177 269.5 351 272.5 356C275.5 361 276 370.5 272.5 376.5C268.43 383.477 222.5 380.5 222.5 380.5C222.5 380.5 280.559 373.779 278 397C276.305 412.381 264.463 423.42 249 424C229.289 424.74 219.5 383 219.5 383"
+        stroke="black"
+        stroke-width="2"></path>
+    </svg>
+  </div>
+  <div class="timeline__items">
+    {
+      steps.map((step: Step) => (
+        <div class="timeline__item">
+          <div class="timeline__content">
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    padding: 4rem 4rem 10rem 4rem;
+  }
+
+  @media  (max-width: 768px) {
+    .timeline {
+      grid-template-columns: 1fr;
+      padding: 0 2rem 6rem 2rem;
+    }
+    
+    .timeline__line svg {
+      position: absolute;
+      top: 5rem;
+      left: -2rem;
+    }
+
+    .timeline__line svg path {
+      stroke: rgba(0, 0, 0, 0.318);
+    }
+  }
+
+  .timeline__line {
+    position: relative;
+    top: 2rem;
+    left: 4rem;
+  }
+
+  .timeline__line svg {
+    width: 80%;
+    height: auto;
+  }
+
+  .timeline__item .timeline__content h3 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+
+</style>
