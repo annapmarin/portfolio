@@ -1,0 +1,7 @@
+name = "annaprats-api"
+main = "dist/index.js"
+compatibility_date = "2024-06-15"
+
+routes = [
+  "https://annaprats.dev/api/*"
+]
