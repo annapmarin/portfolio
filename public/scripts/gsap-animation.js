@@ -30,8 +30,8 @@ function animateJourney() {
               x: 0,
               scrollTrigger: {
                 trigger: item,
-                start: "top 70%",
-                end: "top 40%",
+                start: "top 90%",
+                end: "top 60%",
                 scrub: true
               },
             }
