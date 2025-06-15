@@ -2,6 +2,7 @@
 import Card from "../components/Card.astro";
 import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
+import Form from "../components/Form.astro";
 
 const socialMediaLinks = [
   { href: "https://github.com/annapmarin", icon: "devicon-github-original", label: "GitHub" },
@@ -34,6 +35,9 @@ const socialMediaLinks = [
         </a>
       ))}
     </div>
+  </Card>
+  <Card class="connect-block" title="Let's connect">
+    <Form />
   </Card>
 </Layout>
 
