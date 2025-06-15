@@ -152,6 +152,27 @@ function animateMenuColor() {
       }
     });
   });
+
+  // Check on load if menu is over a white-section
+  function checkInitialSection() {
+    const sections = document.querySelectorAll('.white-section');
+    const menuRect = menu.getBoundingClientRect();
+    let isOverWhite = false;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (
+        rect.top < menuRect.bottom &&
+        rect.bottom > menuRect.top
+      ) {
+        isOverWhite = true;
+      }
+    });
+    if (isOverWhite) {
+      menu.classList.add('menu--dark');
+      activeCount = 1;
+    }
+  }
+  checkInitialSection();
 }
 
 const hamburger = document.querySelector('.navbar__hamburger');
