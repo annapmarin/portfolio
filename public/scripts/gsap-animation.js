@@ -154,6 +154,15 @@ function animateMenuColor() {
   });
 }
 
+const hamburger = document.querySelector('.navbar__hamburger');
+const menuIcon = document.querySelector('.menu');
+const menuLinks = document.querySelector('.navbar__links');
+
+hamburger.addEventListener('click', () => {
+  menuIcon.classList.toggle('open');
+  menuLinks.classList.toggle('open');
+});
+
 if (window.innerWidth > 768) {
   animateScrollSmooth();
 };

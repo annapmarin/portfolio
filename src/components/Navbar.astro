@@ -10,25 +10,93 @@ const navItems = [
 <nav class="navbar">
   <div class="navbar__hamburger">
     <svg class="menu" xmlns="http://www.w3.org/2000/svg" width="35" height="22" viewBox="0 0 35 22" fill="none">
-      <path d="M0 3.47368C0 1.55522 1.62104 0 3.62069 0H35V3.47368H0Z" fill="white"/>
-      <path d="M0 22H31.3793C33.379 22 35 20.4448 35 18.5263H0V22Z" fill="white"/>
-      <path d="M0 12.7368H35V9.26316H0V12.7368Z" fill="white"/>
+      <path class="line top" d="M0 3.47368C0 1.55522 1.62104 0 3.62069 0H35V3.47368H0Z" fill="white"/>
+      <path class="line bottom" d="M0 22H31.3793C33.379 22 35 20.4448 35 18.5263H0V22Z" fill="white"/>
+      <path class="line middle" d="M0 12.7368H35V9.26316H0V12.7368Z" fill="white"/>
     </svg>
+  </div>
+  <div class="navbar__links">
+    {navItems.map(item => (
+      <a class="navbar__link" href={item.href} aria-label={item.name}>
+        {item.name}
+      </a>
+    ))}
   </div>
 </nav>
 
 <style>
-  .navbar {
+  .navbar__hamburger {
     position: fixed;
     display: flex;
     width: 100%;
     justify-content: end;
-    z-index: 2;
+    z-index: 4;
     top: 2rem;
     right: 2rem;
   }
 
+  .navbar__links {
+    height: 0;
+    transition: height 0.3s ease-in-out;
+    position: fixed;
+  }
+
+  .navbar__links.open {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: #111111bb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    padding-top: 5rem;
+    gap: 1rem;
+  }
+
+  .navbar__links:not(.open) a {
+    display: none;
+  }
+
+  .navbar__links a {
+    display: block;
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .navbar__links a:hover {
+    color: #ff6347;
+  }
+
   .menu--dark path {
     fill: #111111;
+  }
+
+  .navbar__hamburger {
+  cursor: pointer;
+  width: 35px;
+  height: 22px;
+}
+
+  .menu .line {
+    transform-origin: center;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .menu.open .top {
+    transform: translate(-10px, 7px) rotate(45deg);
+  }
+
+  .menu.open .bottom {
+    transform: translate(-10px, -7px) rotate(-45deg)
+  }
+
+  .menu.open .middle {
+    opacity: 0;
   }
 </style>
