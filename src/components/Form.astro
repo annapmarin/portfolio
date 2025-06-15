@@ -1,27 +1,86 @@
 ---
 import meMyself from "../../public/img/annapm.webp";
+const siteKey = import.meta.env.PUBLIC_RECAPTCHA_KEY;
 ---
 <section class="form__container">
   <img class="img-form" src={ meMyself.src } alt="ghibli studios me" />
-  <form class="form" action="/submit" method="POST">
+  <form data-contact-form class="form" data-sitekey={siteKey}>
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required />
     </div>
-    
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required />
     </div>
-    
     <div class="form-group">
       <label for="message">Message:</label>
       <textarea id="message" name="message" required></textarea>
     </div>
-    
     <button type="submit">Submit</button>
+    <div data-form-status></div>
   </form>
 </section>
+
+<script type="module">
+  import setupContactForm from '../scripts/contact-form.js';
+  setupContactForm();
+</script>
+
+<script type="module">
+  const form = document.querySelector('[data-contact-form]');
+  const statusDiv = document.querySelector('[data-form-status]');
+  const formSiteKey = form.getAttribute('data-sitekey');
+
+  const script = document.createElement('script');
+  script.src = `https://www.google.com/recaptcha/api.js?render=${formSiteKey}`;
+  script.async = true;
+  document.head.appendChild(script);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusDiv.textContent = 'Sending...';
+
+    const waitForGrecaptcha = () =>
+      new Promise((resolve) => {
+        if (window.grecaptcha) return resolve();
+        const interval = setInterval(() => {
+          if (window.grecaptcha) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 100);
+      });
+
+    await waitForGrecaptcha();
+
+    window.grecaptcha.ready(async () => {
+      const token = await window.grecaptcha.execute(formSiteKey, { action: 'contact' });
+
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        recaptcha: token
+      };
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        statusDiv.textContent = 'Message sent successfully!';
+        form.reset();
+      } else {
+        statusDiv.textContent = 'Error sending message. Please try again later.';
+      }
+    });
+  });
+</script>
 
 <style>
   .form__container {
@@ -50,6 +109,13 @@ import meMyself from "../../public/img/annapm.webp";
     .form__container {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      align-items: self-start;
+    }
+
+    .img-form {
+      padding-top: 2rem;
+      max-height: 380px;
+      margin: 0 auto;
     }
   }
 
@@ -112,6 +178,11 @@ import meMyself from "../../public/img/annapm.webp";
   button[type="submit"]:hover {
     background: #333;
     color: #fff;
+  }
+
+  div[data-form-status] {
+    text-align: right;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
