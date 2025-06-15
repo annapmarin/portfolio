@@ -2,8 +2,13 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   let name: string, email: string, message: string, recaptcha: string;
+
+  const getEnv = (key: string) =>
+    typeof (locals as any)?.env === 'object'
+      ? (locals as any).env[key]
+      : import.meta.env[key];
 
   const contentType = request.headers.get('content-type') || '';
   if (contentType.includes('application/json')) {
@@ -25,8 +30,8 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ success: false, error: 'Unsupported Content-Type' }), { status: 400 });
   }
 
-  // ReCAPTCHA validation
-  const secret = import.meta.env.RECAPTCHA_SECRET;
+  // Validación reCAPTCHA
+  const secret = getEnv('RECAPTCHA_SECRET');
   const params = new URLSearchParams();
   params.append('secret', secret);
   params.append('response', recaptcha);
@@ -40,13 +45,13 @@ export const POST: APIRoute = async ({ request }) => {
     }
   );
   const verifyData = await verifyRes.json();
-  console.log('reCAPTCHA verifyData:', verifyData);
   if (!verifyData.success) {
     return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA failed', details: verifyData }), { status: 400 });
   }
 
-  // Resend endpoint
-  const resendApiKey = import.meta.env.RESEND_API_KEY;
+  // Llamada a la API de Resend
+  const resendApiKey = getEnv('RESEND_API_KEY');
+  const emailTo = getEnv('EMAIL_TO');
   const emailRes = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -55,7 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
     },
     body: JSON.stringify({
       from: 'Anna Prats <no-reply@annaprats.dev>',
-      to: import.meta.env.EMAIL_TO,
+      to: emailTo,
       subject: `Nuevo mensaje de ${name}`,
       reply_to: email,
       text: `Has recibido un mensaje desde tu portfolio:\n\nNombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`,
