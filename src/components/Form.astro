@@ -23,11 +23,6 @@ const siteKey = import.meta.env.PUBLIC_RECAPTCHA_KEY;
 </section>
 
 <script type="module">
-  import setupContactForm from '../scripts/contact-form.js';
-  setupContactForm();
-</script>
-
-<script type="module">
   const form = document.querySelector('[data-contact-form]');
   const statusDiv = document.querySelector('[data-form-status]');
   const formSiteKey = form.getAttribute('data-sitekey');
