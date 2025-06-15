@@ -25,6 +25,7 @@ import Footer from "../components/Footer.astro";
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <slot />
+        <Footer />
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
@@ -32,7 +33,6 @@ import Footer from "../components/Footer.astro";
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" defer></script>
     <script src="/scripts/gsap-animation.js" defer></script>
   </body>
-  <Footer />
 </html>
 
 <style>
