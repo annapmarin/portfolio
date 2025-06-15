@@ -123,8 +123,40 @@ function animateScrollSmooth() {
   }
 }
 
+function animateMenuColor() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const menu = document.querySelector('.menu');
+  let activeCount = 0;
+
+  document.querySelectorAll('.white-section').forEach(section => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: "bottom top",
+      onEnter: () => {
+        activeCount++;
+        menu.classList.add('menu--dark');
+      },
+      onLeave: () => {
+        activeCount--;
+        if (activeCount === 0) menu.classList.remove('menu--dark');
+      },
+      onEnterBack: () => {
+        activeCount++;
+        menu.classList.add('menu--dark');
+      },
+      onLeaveBack: () => {
+        activeCount--;
+        if (activeCount === 0) menu.classList.remove('menu--dark');
+      }
+    });
+  });
+}
+
 if (window.innerWidth > 768) {
   animateScrollSmooth();
 };
 animateJourney();
 animateTechIcons();
+animateMenuColor();

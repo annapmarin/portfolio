@@ -4,47 +4,31 @@ const navItems = [
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' }
 ];
+
 ---
 
 <nav class="navbar">
-  <ul class="navbar__list">
-    {navItems.map(item => (
-      <li class="navbar__item">
-        <a href={item.href} class="navbar__link">{item.name}</a>
-      </li>
-    ))}
-  </ul>
+  <div class="navbar__hamburger">
+    <svg class="menu" xmlns="http://www.w3.org/2000/svg" width="35" height="22" viewBox="0 0 35 22" fill="none">
+      <path d="M0 3.47368C0 1.55522 1.62104 0 3.62069 0H35V3.47368H0Z" fill="white"/>
+      <path d="M0 22H31.3793C33.379 22 35 20.4448 35 18.5263H0V22Z" fill="white"/>
+      <path d="M0 12.7368H35V9.26316H0V12.7368Z" fill="white"/>
+    </svg>
+  </div>
 </nav>
 
 <style>
   .navbar {
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    width: 100%;
-  }
-
-  .navbar__list {
-    width: 40%;
-    margin-left: auto;
+    position: fixed;
     display: flex;
-    gap: 1rem;
-    list-style: none;
-    align-items: center;
-    justify-content: center;
-    padding-inline-start: 0;
+    width: 100%;
+    justify-content: end;
+    z-index: 2;
+    top: 2rem;
+    right: 2rem;
   }
 
-  @media (max-width: 768px) {
-    .navbar__list {
-      width: unset;
-      margin: 20px auto;
-    }
-  }
-
-  .navbar__link {
-    text-decoration: none;
-    color: #fff;
-    font-size: .8rem;
+  .menu--dark path {
+    fill: #111111;
   }
 </style>

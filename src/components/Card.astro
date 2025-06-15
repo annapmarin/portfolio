@@ -2,7 +2,7 @@
 const { title, invert = false } = Astro.props;
 ---
 
-<section class={`card${invert ? " card--invert" : ""}`}>
+<section class={`card${invert ? " card--invert" : " white-section"}`}>
   <div class="card__header">
     <span class="card__dot"></span>
     <h2 class="card__title">{ title }</h2>
