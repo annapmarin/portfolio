@@ -1,5 +1,5 @@
 name = "annaprats-api"
-main = "dist/index.js"
+main = "dist/_worker.js/index.js"
 compatibility_date = "2024-06-15"
 
 routes = [
