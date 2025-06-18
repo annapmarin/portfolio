@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.4",
-    "astro": "^5.9.2"
+    "astro": "^5.9.2",
+    "gsap": "^3.13.0"
   },
   "devDependencies": {
     "wrangler": "^4.20.0"
