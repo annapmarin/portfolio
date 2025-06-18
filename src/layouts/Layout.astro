@@ -31,6 +31,11 @@ import Footer from "../components/Footer.astro";
   </body>
 </html>
 
+<script type="module" is:inline>
+  import animateTexts from "/src/scripts/text-gsap.js";
+  animateTexts();
+</script>
+
 <style>
 	html, body {
     font-family: 'Neue Montreal', sans-serif;
