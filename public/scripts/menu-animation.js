@@ -1,6 +1,4 @@
-const { gsap, ScrollTrigger } = window;
-
-export default function animateMenuColor() {
+function animateMenuColor() {
   gsap.registerPlugin(ScrollTrigger);
 
   const menu = document.querySelector(".menu");
@@ -57,3 +55,5 @@ export default function animateMenuColor() {
   }
   checkInitialSection();
 }
+
+animateMenuColor();

@@ -22,13 +22,9 @@ const siteKey = import.meta.env.PUBLIC_RECAPTCHA_KEY;
   </form>
 </section>
 
-<script type="module" is:inline>
-  import setupContactForm from '/scripts/contact-form.js';
-  import imageAnimation from '/scripts/image-gsap.js';
+<script src="/scripts/image-gsap.js" defer></script>
+<script src="/scripts/contact-form.js" defer></script>
 
-  setupContactForm();
-  imageAnimation();
-</script>
 
 <style>
   .form__container {

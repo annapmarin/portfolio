@@ -1,6 +1,4 @@
-const { gsap } = window;
-
-export default function animateTechIcons() {
+function animateTechIcons() {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", run);
   } else {
@@ -32,3 +30,5 @@ export default function animateTechIcons() {
     });
   }
 }
+
+animateTechIcons();

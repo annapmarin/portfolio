@@ -1,8 +1,4 @@
-const { gsap, ScrollTrigger } = window;
-
-gsap.registerPlugin(ScrollTrigger);
-
-export default function flowerJourney() {
+function flowerJourney() {
   function run() {
     const path = document.getElementById("flower-line");
     if (path) {
@@ -28,3 +24,5 @@ export default function flowerJourney() {
     run();
   }
 }
+
+flowerJourney();

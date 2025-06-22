@@ -1,8 +1,4 @@
-const { gsap, ScrollTrigger } = window;
-
-gsap.registerPlugin(ScrollTrigger);
-
-export default function animateTexts() {
+function animateTexts() {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   function animateText(selector) {
@@ -44,3 +40,5 @@ export default function animateTexts() {
   animateText(".timeline__content");
   animateText(".card__body p");
 }
+
+animateTexts();

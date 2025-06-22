@@ -36,10 +36,7 @@ const { steps = [] }: { steps?: Step[] } = Astro.props;
   </div>
 </section>
 
-<script type="module" is:inline>
-  import flowerJourney from "/scripts/flower-journey-gsap.js";
-  flowerJourney();
-</script>
+<script src="/scripts/flower-journey-gsap.js" defer></script>
 
 <style>
   .timeline {

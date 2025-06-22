@@ -1,6 +1,4 @@
-const { gsap } = window;
-
-export default function animateImgForm() {
+function animateImgForm() {
   function run() {
     const img = document.querySelector(".img-form");
     if (!img) return;
@@ -52,3 +50,4 @@ export default function animateImgForm() {
   }
 }
 
+animateImgForm();

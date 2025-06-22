@@ -1,6 +1,4 @@
-const { gsap, ScrollTrigger, ScrollSmoother } = window;
-
-export default function animateScrollSmooth() {
+function animateScrollSmooth() {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
   function run() {
@@ -17,4 +15,8 @@ export default function animateScrollSmooth() {
   } else {
     run();
   }
+}
+
+if (window.innerWidth > 768) {
+  animateScrollSmooth();
 }
