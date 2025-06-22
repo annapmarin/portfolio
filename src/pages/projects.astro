@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectsGrid from "../components/ProjectsGrid.astro";
+import Hero from "../components/Hero.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout>
+  <Hero title="Project Lab" subtitle=" Ideas turned into code as part of my learning journey" backgroundImage="/src/static/img/hero-projects.webp" />
+  <Card title="Practice makes perfect">
+    <p class="big">
+      A collection of projects I have built to practice my skills and learn new technologies.
+      Each project is a step in my journey as a developer, showcasing my growth and creativity.
+    </p>
+  </Card>
+  <ProjectsGrid type="practice" />
+</Layout>
+
+<script type="module" is:inline>
+  import animateScrollSmooth from "/src/scripts/scroll-smooth-gsap.js";
+  if (window.innerWidth > 768) {
+    animateScrollSmooth();
+  }
+</script>

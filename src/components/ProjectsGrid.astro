@@ -1,0 +1,103 @@
+---
+import { realProjects, practiceProjects, designProjects } from '../data/projects';
+import type { Project } from '../data/projects';
+import openLinkIcon from '../static/img/open-link.svg';
+
+const { type } = Astro.props;
+
+let displayedProjects: Project[];
+
+switch (type) {
+  case 'real':
+    displayedProjects = realProjects;
+    break;
+  case 'practice':
+    displayedProjects = practiceProjects;
+    break;
+  case 'design':
+    displayedProjects = designProjects;
+    break;
+  default:
+    displayedProjects = [];
+}
+---
+<section class="project-grid">  {displayedProjects.map((project) => (
+    <div class="project-card">
+      <img src={openLinkIcon.src} alt="Open project link" class="open-link-icon" />
+      <a href={project.link} target="_blank" rel="noopener noreferrer">
+        <img src={project.image} alt={project.title} class="project-image" />
+      </a>
+      <h2 class="project-title">{project.title}</h2>
+      <p class="project-description">{project.description}</p>
+    </div>
+  ))}
+</section>
+
+<style>
+  .project-grid {
+    padding: 2rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .project-card {
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover .project-image {
+    filter: brightness(0.8);
+  }
+
+  .project-card:hover .open-link-icon {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  .project-grid .project-image {
+    width: 100%;
+    border-radius: 30px 0 30px 0;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+  }
+
+  .open-link-icon {
+    position: absolute;
+    height: 80px;
+    left: 50%;
+    transform: translate(-50%, 80%);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  @media (max-width: 1024px) {
+    .project-grid {
+      padding: 2rem 2.2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .open-link-icon {
+      top: -20px;
+    }
+    .project-grid {
+      padding: 2rem 2.2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-grid {
+      padding: 2rem 2.2rem;
+      grid-template-columns: 100%;
+    }
+  }
+
+</style>
