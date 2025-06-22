@@ -32,13 +32,7 @@ import Footer from "../components/Footer.astro";
 
 <script type="module" is:inline>
   import animateTexts from "/src/scripts/text-gsap.js";
-  import animateScrollSmooth from "/src/scripts/scroll-smooth-gsap.js";
-
   animateTexts();
-  
-  if (window.innerWidth > 768) {
-    animateScrollSmooth();
-  }
 </script>
 
 <style>
