@@ -1,7 +1,6 @@
 ---
 import { realProjects, practiceProjects, designProjects } from '../data/projects';
 import type { Project } from '../data/projects';
-import openLinkIcon from '../static/img/open-link.svg';
 
 const { type } = Astro.props;
 
@@ -23,7 +22,7 @@ switch (type) {
 ---
 <section class="project-grid">  {displayedProjects.map((project) => (
     <div class="project-card">
-      <img src={openLinkIcon.src} alt="Open project link" class="open-link-icon" />
+      <img src="/img/open-link.svg" alt="Open project link" class="open-link-icon" />
       <a href={project.link} target="_blank" rel="noopener noreferrer">
         <img src={project.image} alt={project.title} class="project-image" />
       </a>

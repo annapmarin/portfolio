@@ -1,6 +1,4 @@
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+const { gsap, ScrollTrigger, ScrollSmoother } = window;
 
 export default function animateScrollSmooth() {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);

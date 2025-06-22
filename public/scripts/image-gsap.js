@@ -1,4 +1,4 @@
-import gsap from "gsap";
+const { gsap } = window;
 
 export default function animateImgForm() {
   function run() {

@@ -6,7 +6,7 @@ import Card from "../components/Card.astro";
 ---
 
 <Layout>
-  <Hero title="Project Lab" subtitle=" Ideas turned into code as part of my learning journey" backgroundImage="/src/static/img/hero-projects.webp" />
+  <Hero title="Project Lab" subtitle=" Ideas turned into code as part of my learning journey" backgroundImage="/img/hero-projects.webp" />
   <Card title="Practice makes perfect">
     <p class="big">
       A collection of projects I have built to practice my skills and learn new technologies.
@@ -17,7 +17,7 @@ import Card from "../components/Card.astro";
 </Layout>
 
 <script type="module" is:inline>
-  import animateScrollSmooth from "/src/scripts/scroll-smooth-gsap.js";
+  import animateScrollSmooth from "/scripts/scroll-smooth-gsap.js";
   if (window.innerWidth > 768) {
     animateScrollSmooth();
   }

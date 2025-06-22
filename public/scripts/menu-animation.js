@@ -1,5 +1,4 @@
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+const { gsap, ScrollTrigger } = window;
 
 export default function animateMenuColor() {
   gsap.registerPlugin(ScrollTrigger);
